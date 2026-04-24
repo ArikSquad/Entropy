@@ -125,7 +125,7 @@ public class SkyBlockEvent extends AbstractInstantEvent {
                         var sandPos = startPos.offset(-ix, iy, iz);
 
                         // Prevent sand from falling
-                        ChunkPos sandChunk = new ChunkPos(sandPos.getX() >> 4, sandPos.getZ() >> 4);
+                        ChunkPos sandChunk = ChunkPos.containing(sandPos);
                         world.getBlockTicks().removeContainer(sandChunk);
 
                         world.setBlockAndUpdate(sandPos, Blocks.SAND.defaultBlockState());

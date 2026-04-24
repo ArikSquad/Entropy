@@ -38,7 +38,7 @@ public class IntenseThunderStormEvent extends AbstractTimedEvent {
     @Override
     public void init() {
         random = new Random();
-        var weatherData = Entropy.getInstance().eventHandler.server.overworld().getWeatherData();
+        var weatherData = Entropy.getInstance().eventHandler.server.getWeatherData();
         weatherData.setClearWeatherTime(0);
         weatherData.setRainTime(this.getDuration());
         weatherData.setThunderTime(this.getDuration());

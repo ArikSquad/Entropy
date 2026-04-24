@@ -45,7 +45,7 @@ public class GameRendererMixin {
     private CrossFrameResourcePool resourcePool;
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;doEntityOutline()V", shift = At.Shift.AFTER))
-    public void renderShaders(DeltaTracker tickCounter, boolean tick, CallbackInfo ci){
+    public void renderShaders(DeltaTracker deltaTracker, boolean advanceGameTime, CallbackInfo ci) {
         if (Variables.blur) {
             ShaderManager.render(ShaderManager.BLUR, minecraft, resourcePool);
         } else if (Variables.invertedShader) {
@@ -58,7 +58,7 @@ public class GameRendererMixin {
     }
 
     @Inject(method = "render", at = @At(value = "TAIL"))
-    public void renderBlackWhiteShader(DeltaTracker tickCounter, boolean tick, CallbackInfo ci) {
+    public void renderBlackWhiteShader(DeltaTracker deltaTracker, boolean advanceGameTime, CallbackInfo ci) {
         if (Variables.blackAndWhite) {
             ShaderManager.render(ShaderManager.BLACK_AND_WHITE, minecraft, resourcePool);
         }
